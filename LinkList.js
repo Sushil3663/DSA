@@ -24,12 +24,45 @@ class LinkList {
         console.log(node);
         if (this.isEmpty()) {
             this.head = node
+            // console.log(this.head);
+
         }
         else {
             node.next = this.head
+            // console.log(node.next);
             this.head = node
+            // console.log(node);
+
         }
         this.size++;
+    }
+
+    append(value) {
+        let node = new Node(value);
+        if (this.isEmpty()) {
+            this.head = node
+            // console.log(this.head);
+        }
+        else {
+            let prev = this.head
+            while (prev.next) {
+                prev = prev.next
+            }
+            console.log(prev);
+            prev.next = node
+            // this.head = node
+
+        }
+        this.size++;
+    }
+
+    insert(value, index) {
+        if (index < 0 && index > this.size) {
+            return
+        }
+        if (index === 0) {
+            this.prepend(value)
+        }
     }
 
     print() {
@@ -49,16 +82,20 @@ class LinkList {
 
 }
 
-let List = new LinkList(3);
-console.log(List.isEmpty())
-console.log(List.getSize())
-List.prepend(2)
-List.print()
+let List = new LinkList();
+// console.log(List.isEmpty())
+// console.log(List.getSize())
+// List.prepend(2)
+// List.print()
 
-List.prepend(3)
-List.print()
+// List.prepend(3)
+// List.print()
 
-List.prepend(4)
+List.append(2)
+List.append(3)
+List.append(4)
 List.print()
+// List.print()
+// console.log(List.getSize())
 
 
