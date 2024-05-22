@@ -57,12 +57,55 @@ class LinkList {
     }
 
     insert(value, index) {
-        if (index < 0 && index > this.size) {
+        if (index < 0 || index > this.size) {
             return
         }
         if (index === 0) {
             this.prepend(value)
         }
+        else {
+
+            const node = new Node(value)
+            let prev = this.head
+            for (let i = 0; i < index - 1; i++) {
+                prev = prev.next
+            }
+            node.next = prev.next
+            prev.next = node
+            this.size++;
+            // console.log(node)
+        }
+    }
+
+    removeFrom(index) {
+        if (index < 0 || index >= this.size) {
+            return null
+        }
+        let removeNode
+        if (index === 0) {
+            removeNode = this.head
+            this.head = this.head.next
+            // if (prev.next === null) {
+            //     this.head = null
+            // }
+            // else {
+            //     this.head = this.head.next
+            // }
+        }
+
+        else {
+            let prev = this.head
+
+            for (let i = 0; i < index - 1; i++) {
+                prev = prev.next
+            }
+            removeNode = prev.next
+            prev.next = removeNode.next
+
+        }
+        this.size--;
+        return removeNode.value
+
     }
 
     print() {
@@ -91,10 +134,28 @@ let List = new LinkList();
 // List.prepend(3)
 // List.print()
 
-List.append(2)
-List.append(3)
-List.append(4)
+// List.append(2)
+// List.append(3)
+// List.append(4)
+List.insert(10, 0)
 List.print()
+
+List.insert(20, 0)
+List.print()
+
+List.insert(30, 1)
+List.print()
+
+List.insert(40, 2)
+List.print()
+
+console.log(List.removeFrom(2))
+List.print()
+List.print()
+
+// console.log(List.removeFrom(2))
+
+// List.print()
 // List.print()
 // console.log(List.getSize())
 
